@@ -82,12 +82,12 @@ summary(model_110)
 ##AIc=154.47, MASE= 0.646,MAPE= 2.22
 
 
-##diagnostic checking(normality check)
+##diagnostic checking
 tsdisplay(residuals(model_1001))
 tsdisplay(residuals(model_010))#suggested
 tsdisplay(residuals(model_110))
 
-##box-jenkins test
+##box-jenkins test for auto-correlation
 Box.test(residuals(model_1001),lag=1, type = "Ljung-Box")
 ##there is no auto-correlation exists 
 Box.test(residuals(model_010),lag=1, type = "Ljung-Box")
@@ -104,4 +104,5 @@ plot(forecasted_010)
 
 forecasted_110 = forecast(model_110, h=20)
 plot(forecasted_110)
+
 
