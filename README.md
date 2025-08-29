@@ -60,6 +60,7 @@ Visualization
 Forecast plots for each model
 
 Arranged in 2×2 grids with gridExtra
+
 <img width="1366" height="729" alt="image" src="https://github.com/user-attachments/assets/c70a7b08-b4a2-43eb-a93f-c9a3889e0711" />
 
 ## 📊 Results
@@ -71,6 +72,7 @@ Performance metrics (2011–2021 test set):
 Lowest RMSE and MAPE among tested models
 
 Final model will be used to generate 10-year forecasts (2024–2033)
+
 <img width="1366" height="726" alt="image" src="https://github.com/user-attachments/assets/db5a5347-c963-4dd7-9c5b-0a5f6dddb537" />
 
 ## 🚀 How to Run
@@ -85,7 +87,7 @@ Install required R packages:
 ```r
 install.packages(c("openxlsx","tseries","forecast","ggplot2",
                    "urca","FinTS","nortest","gridExtra"))
-```r
+
 
 Open energy_forecasting.R in RStudio
 
