@@ -1,9 +1,9 @@
-Renewable Energy Consumption Forecasting (Time Series Analysis + Machine Learning)
-📌 Project Overview
+### Renewable Energy Consumption Forecasting (Time Series Analysis + Machine Learning)
+## 📌 Project Overview
 
 This project applies time series forecasting techniques to predict renewable energy consumption (1980–2023) using ARIMA models. The goal is to evaluate different ARIMA specifications, perform model diagnostics, and generate reliable forecasts for the next one decades.
 
-📂 Dataset
+## 📂 Dataset
 
 Source: Dataset.xlsx
 
@@ -13,7 +13,7 @@ Cleaned with na.omit() to handle missing values
 
 Converted into a time series object with ts()
 
-⚙️ Methods & Workflow
+## ⚙️ Methods & Workflow
 
 Exploratory Data Analysis
 
@@ -62,7 +62,7 @@ Forecast plots for each model
 Arranged in 2×2 grids with gridExtra
 <img width="1366" height="729" alt="image" src="https://github.com/user-attachments/assets/c70a7b08-b4a2-43eb-a93f-c9a3889e0711" />
 
-📊 Results
+## 📊 Results
 
 Best model (test accuracy): ARIMA(9,0,0)
 
@@ -73,25 +73,25 @@ Lowest RMSE and MAPE among tested models
 Final model will be used to generate 10-year forecasts (2024–2033)
 <img width="1366" height="726" alt="image" src="https://github.com/user-attachments/assets/db5a5347-c963-4dd7-9c5b-0a5f6dddb537" />
 
-🚀 How to Run
+## 🚀 How to Run
 
 Clone this repository
 
 git clone https://github.com/Jahin19026/Time_Series_Analysis-Renewable_Energy_Consumption.git
 cd Time_Series_Analysis-Renewable_Energy_Consumption
-
+```r
 
 Install required R packages:
-
+```r
 install.packages(c("openxlsx","tseries","forecast","ggplot2",
                    "urca","FinTS","nortest","gridExtra"))
-
+```r
 
 Open energy_forecasting.R in RStudio
 
 Run the script to reproduce results and plots
 
-📌 Future Work
+## 📌 Future Work
 
 Explore Ensemble Forecasting (averaging ARIMA + ETS + ML models)
 
