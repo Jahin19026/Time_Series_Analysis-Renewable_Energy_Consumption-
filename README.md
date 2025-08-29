@@ -1,85 +1,100 @@
-# 🌱 Renewable Energy Consumption Forecasting (Time Series Analysis)
+Renewable Energy Consumption Forecasting (Time Series Analysis + Machine Learning)
+📌 Project Overview
 
-This project analyzes and forecasts renewable energy consumption using time series modeling techniques in R. The dataset spans multiple decades and explores stationarity, model fitting, residual diagnostics, and 20-year forecasting.
+This project applies time series forecasting techniques to predict renewable energy consumption (1980–2023) using ARIMA models. The goal is to evaluate different ARIMA specifications, perform model diagnostics, and generate reliable forecasts for the next one decades.
 
----
+📂 Dataset
 
-## 📌 Objective
+Source: Dataset.xlsx
 
-To build and evaluate time series models (ARIMA) for forecasting future values of renewable energy consumption, and to identify the most suitable model based on accuracy metrics and diagnostics.
+Variable: Renewable.energy.consumption (annual frequency, 1980–2023)
 
----
+Cleaned with na.omit() to handle missing values
 
-## 📁 Dataset
+Converted into a time series object with ts()
 
-- File: `Dataset.xlsx`
-- Variable: `Renewable.energy.consumption` (Yearly time series data)
-- Cleaned using `na.omit()` to remove missing values.
+⚙️ Methods & Workflow
 
----
+Exploratory Data Analysis
 
-## 🛠️ Methods and Workflow
+Time series plotting with ggplot2
 
-### 🔹 Step 1: Data Preparation
-- Load the data using `openxlsx`
-- Remove missing values
-- Convert to time series object with `ts()`
-- Create a data frame for visualization
+Stationarity checks: ADF, PP, KPSS, DF-GLS
 
-### 🔹 Step 2: Visualization
-- Plot the time series using `ggplot2`
-- Add line and points with proper labels
+Model Building
 
-### 🔹 Step 3: Stationarity Tests
-- Augmented Dickey-Fuller (ADF)
-- Phillips-Perron (PP)
-- KPSS (Level and Trend)
-- DF-GLS via `urca::ur.ers()`
+Candidate ARIMA models:
 
-### 🔹 Step 4: Model Building
-- `auto.arima()` for best-fit model
-- Manual ARIMA models:
-  - ARIMA(10,0,1)
-  - ARIMA(0,1,0)
-  - ARIMA(1,1,0)
+ARIMA(10,0,1)
 
-### 🔹 Step 5: Model Evaluation
-- Metrics from `summary()`: AIC, MASE, MAPE
-- Residual diagnostics using:
-  - `tsdisplay()`
-  - Ljung-Box test (`Box.test()`)
+ARIMA(9,0,0)
 
-### 🔹 Step 6: Forecasting
-- Forecast for 2 years (short-term)
-- Forecast for 20 years (long-term)
-- Visualize forecasts with confidence intervals
+ARIMA(1,1,1)
 
----
+auto.arima() suggested ARIMA(0,1,0)
 
-## 📊 Model Performance Summary
+Diagnostic Checking
 
-| Model         | AIC     | MASE  | MAPE   | Residual Autocorrelation |
-|---------------|---------|-------|--------|---------------------------|
-| ARIMA(10,0,1) | 152.51  | 0.407 | 1.35   | ❌ None (Best Fit)        |
-| ARIMA(0,1,0)  | 156.48  | 0.977 | 97.36  | ✅ Exists                 |
-| ARIMA(1,1,0)  | 154.47  | 0.646 | 2.22   | ✅ Exists                 |
+Residual analysis (ACF, PACF, Ljung–Box test)
 
----
+Heteroskedasticity: ARCH test
 
-## 📦 R Packages Used
+Normality: Shapiro–Wilk, Anderson–Darling, Jarque–Bera
 
-- `openxlsx` – for reading Excel data  
-- `forecast` – for ARIMA modeling and forecasting  
-- `tseries` – for ADF, PP, and KPSS tests  
-- `urca` – for DF-GLS test  
-- `ggplot2` – for data visualization  
+Transformation
 
----
+Applied Box–Cox transformation (λ ≈ 0.70) to improve residual distribution.
 
-## 🚀 How to Run
+Forecasting & Validation
 
-1. Open the R script in RStudio or R.
-2. Make sure `Dataset.xlsx` is in your working directory.
-3. Install required packages:
-```r
-install.packages(c("openxlsx", "forecast", "tseries", "urca", "ggplot2"))
+Train set: 1980–2010
+
+Test set: 2011–2021
+
+Out-of-sample forecasts for 11 years
+
+Accuracy compared using RMSE, MAE, MAPE, MASE
+
+Visualization
+
+Forecast plots for each model
+
+Arranged in 2×2 grids with gridExtra
+<img width="1366" height="729" alt="image" src="https://github.com/user-attachments/assets/c70a7b08-b4a2-43eb-a93f-c9a3889e0711" />
+
+📊 Results
+
+Best model (test accuracy): ARIMA(9,0,0)
+
+Performance metrics (2011–2021 test set):
+
+Lowest RMSE and MAPE among tested models
+
+Final model will be used to generate 10-year forecasts (2024–2033)
+<img width="1366" height="726" alt="image" src="https://github.com/user-attachments/assets/db5a5347-c963-4dd7-9c5b-0a5f6dddb537" />
+
+🚀 How to Run
+
+Clone this repository
+
+git clone https://github.com/Jahin19026/Time_Series_Analysis-Renewable_Energy_Consumption.git
+cd Time_Series_Analysis-Renewable_Energy_Consumption
+
+
+Install required R packages:
+
+install.packages(c("openxlsx","tseries","forecast","ggplot2",
+                   "urca","FinTS","nortest","gridExtra"))
+
+
+Open energy_forecasting.R in RStudio
+
+Run the script to reproduce results and plots
+
+📌 Future Work
+
+Explore Ensemble Forecasting (averaging ARIMA + ETS + ML models)
+
+Test exogenous variables (ARIMAX) for improved accuracy
+
+Deploy as an interactive Shiny app for visualization
