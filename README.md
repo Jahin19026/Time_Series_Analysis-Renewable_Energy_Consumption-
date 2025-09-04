@@ -79,9 +79,9 @@ Final model will be used to generate 10-year forecasts (2024–2033)
 
 Clone this repository
 
-git clone https://github.com/Jahin19026/Time_Series_Analysis-Renewable_Energy_Consumption.git
+git clone https://github.com/Jahin19026/Time_Series_Analysis-Renewable_Energy_Consumption-.git
 
-cd Time_Series_Analysis-Renewable_Energy_Consumption
+cd Time_Series_Analysis-Renewable_Energy_Consumption-
 
 
 Install required R packages:
